@@ -82,6 +82,8 @@ class pyGTrends(object):
             'sa': sa
         })                            
         self.raw_data = self.opener.open('http://www.google.com/trends/viz?' + params).read()[2::2]
+        if self.raw_data in ['You must be signed in to export data from Google Trend']:
+            raise Exception(self.raw_data)
         self._build_header_dictionary()
 
     def _build_header_dictionary(self):
