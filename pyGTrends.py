@@ -91,7 +91,6 @@ class pyGTrends(object):
         figure out what parts of the csv point to what section
         """
         start = 0
-        #print self.raw_data
         for a in range(20):
             redatapuller = re.compile("\r\n\r\n\r\n(?P<word>.*?)\t.*?\n", re.DOTALL)
             m = redatapuller.search(self.raw_data[start:])
