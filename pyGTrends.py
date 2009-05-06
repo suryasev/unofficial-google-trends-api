@@ -96,7 +96,7 @@ class pyGTrends(object):
             m = redatapuller.search(self.raw_data[start:])
             if not(m):
                 break
-            self.header_dictionary[m.group("word")] = start + m.end()
+            self.header_dictionary[m.group("word").lower()] = start + m.end()
             if a==0:
                 self.header_dictionary["main"] = start + m.end()
             start += m.end()
@@ -107,13 +107,13 @@ class pyGTrends(object):
     def columns(self):
         return self.raw_data[:self.raw_data.find("\r")].split("\t")
     
-    def csv(self, section="main", column_headers=True):
+    def csv(self, section="Main", column_headers=True):
         """
         return the CSV portion of the data designated by 'section'
         column_headers determines whether the the column headers should be part of the CSV output
         """
         table_end = "\r\n\r\n\r\n"
-        table_head_pos = self.header_dictionary[section]
+        table_head_pos = self.header_dictionary[section.lower()]
         table_end_pos = self.raw_data[table_head_pos:].find(table_end)
         if table_end_pos == -1:
             table_end_pos = len(self.raw_data)
