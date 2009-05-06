@@ -120,7 +120,7 @@ class pyGTrends(object):
         else:
             table_end_pos += table_head_pos
         if column_headers:
-            a = ",".join(self.columns()) + "\n"
+            a = ",".join([section] + self.columns()) + "\n"
         else:
             a = ""
         return a + self.raw_data[table_head_pos:table_end_pos].replace("\t",",").replace("\r","")
