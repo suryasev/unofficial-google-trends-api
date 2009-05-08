@@ -71,6 +71,9 @@ class pyGTrends(object):
         date, geo, geor, graph, sort, scale and sa
         are all Google Trends specific ways to slice the data
         """
+        if type(keywords) not in (type([]), type(('tuple',))):
+            keywords = [keywords]
+        
         params = urllib.urlencode({
             'q': ",".join(keywords),
             'date': date,
