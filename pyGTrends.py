@@ -7,7 +7,16 @@ import csv
 from cookielib import CookieJar
 
 class pyGTrends(object):
-    """Google Trends API"""
+    """
+    Google Trends API
+    
+    Recommended usage:
+    
+    from csv import DictReader
+    r = pyGTrends(username, password)
+    r.download_report(('pants', 'skirt'))
+    d = DictReader(r.csv().split('\n'))
+    """
     def __init__(self, username, password):
         """
         provide login and password to be used to connect to Google Analytics
@@ -74,6 +83,10 @@ class pyGTrends(object):
             raise Exception(self.raw_data)
         
     def csv(self, section="main", as_list=False):
+        """
+        Returns a CSV of a specific segment of the data.
+        Available segments include Main, Language, City and Region.
+        """
         if section == "main":
             section = ("Week","Year","Day","Month")
         else:
