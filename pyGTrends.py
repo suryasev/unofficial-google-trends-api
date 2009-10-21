@@ -94,7 +94,7 @@ class pyGTrends(object):
             
         segments = self.raw_data.split('\n\n\n')
         for s in segments:
-            if s.split(',')[0] in section:
+            if s.partition(',')[0] in section:
                 if as_list:
                     return [line for line in csv.reader(s.split('\n'))]
                 else:
