@@ -31,9 +31,9 @@ class pyGTrends(object):
         }
         self.headers = [("Referrer", "https://www.google.com/accounts/ServiceLoginBoxAuth"),
                         ("Content-type", "application/x-www-form-urlencoded"),
-                        ('User-Agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.0.14) Gecko/2009082706 Firefox/3.0.14'),
+                        ('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21'),
                         ("Accept", "text/plain")]
-        self.url_ServiceLoginBoxAuth = 'https://www.google.com/accounts/ServiceLoginBoxAuth'
+        self.url_ServiceLoginBoxAuth = 'https://accounts.google.com/ServiceLoginBoxAuth'
         self.url_Export = 'http://www.google.com/trends/viz'
         self.url_CookieCheck = 'https://www.google.com/accounts/CheckCookie?chtml=LoginDoneHtml'
         self.header_dictionary = {}
@@ -49,7 +49,7 @@ class pyGTrends(object):
         self.opener.addheaders = self.headers
         
         galx = re.compile('<input type="hidden" name="GALX" value="(?P<galx>[a-zA-Z0-9_]+)">')
-        
+
         resp = self.opener.open(self.url_ServiceLoginBoxAuth).read()
         m = galx.search(resp)
         if not m:
@@ -101,3 +101,4 @@ class pyGTrends(object):
                     return s
                     
         raise Exception("Could not find requested section")
+
