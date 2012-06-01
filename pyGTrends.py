@@ -48,7 +48,7 @@ class pyGTrends(object):
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj))
         self.opener.addheaders = self.headers
         
-        galx = re.compile('<input type="hidden" name="GALX" value="(?P<galx>[a-zA-Z0-9_]+)">')
+        galx = re.compile('<input type="hidden" name="GALX" value="(?P<galx>[a-zA-Z0-9_-]+)">')
 
         resp = self.opener.open(self.url_ServiceLoginBoxAuth).read()
         m = galx.search(resp)
